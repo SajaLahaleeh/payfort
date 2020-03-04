@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <iframe src="https://sbcheckout.payfort.com" id="iframe"></iframe>
+
+    <script>
+      const iFrame = document.getElementById("iframe").contentWindow.document;
+      iFrame.open();
+      fetch("https://sbcheckout.payfort.com/FortAPI/paymentPage", {
+        headers: {
+          credentials: "include"
+        },
+        method: "POST",
+        body: JSON.stringify({
+          service_command: "TOKENIZATION",
+          access_code: "0UPmtDIoqFt2POsY7vSR",
+          merchant_identifier: "BbefLryE",
+          merchant_reference: "XYZ9239-yu898",
+          language: "en",
+          signature: "7cad05f0212ed933c9a5d5dffa31661acf2c827a",
+          token_name: "Op9Vmp",
+          return_url: "http://www.merchant.com"
+        })
+      }).then(res => {
+        iFrame.write();
+      });
+    </script>
+  </body>
+</html>
